@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\HookRegistry.cs" />
+    <Compile Include="src\hooks\GameSpeedHook.cs" />
     <Compile Include="src\hooks\SnapToGridHook.cs" />
     <Compile Include="src\hooks\HookTemplate.cs" />
     <Compile Include="src\ReferenceLoader.cs" />
