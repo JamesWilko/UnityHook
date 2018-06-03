@@ -40,17 +40,18 @@ namespace Hooks
 				{
 					SetFastForward();
 					SetSuperFastSpeed();
+					return true;
 				}
 			}
 
 			if( typeName == "Heart" && methodName == "Beat" )
 			{
-				OnCallHeartBeat( thisObj, args, refArgs, refIdxMatch );
+				return OnCallHeartBeat( thisObj, args, refArgs, refIdxMatch );
 			}
 
 			if( typeName == "Assets.TabletopUi.Scripts.Infrastructure.SpeedController" && methodName == "Initialise" )
 			{
-				OnCallSpeedControllerInit( thisObj, args, refArgs, refIdxMatch );
+				return OnCallSpeedControllerInit( thisObj, args, refArgs, refIdxMatch );
 			}
 
 			if( typeName == "Assets.TabletopUi.Scripts.Infrastructure.SpeedController" && methodName == "SetFastForward" )
@@ -90,19 +91,20 @@ namespace Hooks
 
 			heart.AdvanceTime( intervalThisBeat );
 
-			FieldInfo beatCounterField = heart.GetType().GetField( "usualInterval", BindingFlags.NonPublic | BindingFlags.Instance );
-			int beatCounter = (int) beatCounterField.GetValue( heart ) + 1;
+			FieldInfo beatCounterField = heart.GetType().GetField( "beatCounter", BindingFlags.NonPublic | BindingFlags.Instance );
+			int beatCounter = (int) beatCounterField.GetValue( heart );
 			if ( beatCounter >= 20 )
 			{
-				beatCounterField.SetValue( heart, 0 );
+				beatCounter = 0;
 
 				FieldInfo outstandingSlotsToFillField = heart.GetType().GetField( "outstandingSlotsToFill", BindingFlags.NonPublic | BindingFlags.Instance );
-				HashSet<Assets.TabletopUi.TokenAndSlot> outstandingSlotsToFillValue = outstandingSlotsToFillField.GetValue( heart ) as HashSet<Assets.TabletopUi.TokenAndSlot>;
-				HashSet<Assets.TabletopUi.TokenAndSlot> outstandingSlotsToFillRet = Registry.Retrieve<TabletopManager>().FillTheseSlotsWithFreeStacks( outstandingSlotsToFillValue );
+				HashSet<Assets.TabletopUi.TokenAndSlot> outstandingSlotsToFillValue = (HashSet<Assets.TabletopUi.TokenAndSlot>) outstandingSlotsToFillField.GetValue( heart );
+				HashSet <Assets.TabletopUi.TokenAndSlot> outstandingSlotsToFillRet = Registry.Retrieve<TabletopManager>().FillTheseSlotsWithFreeStacks( outstandingSlotsToFillValue );
 				outstandingSlotsToFillField.SetValue( heart, outstandingSlotsToFillRet );
 			}
+			beatCounterField.SetValue( heart, beatCounter + 1 );
 
-			return null;
+			return true;
 		}
 
 		object OnCallSpeedControllerInit( object thisObj, object[] args, IntPtr[] refArgs, int[] refIdxMatch )
