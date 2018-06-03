@@ -38,7 +38,7 @@ namespace Hooker.util
 	abstract class GeneralOptions
 	{
 		/* Command line options */
-		[Option('d', "gamedir", Required = true,
+		[Option('d', "gamedir",
 				HelpText = "The path to the game installation folder.")]
 		public string GamePath
 		{
@@ -67,24 +67,24 @@ namespace Hooker.util
 	// Specifically to Hook operations
 	class HookSubOptions : GeneralOptions
 	{
-		[Option('h', "hooksfile", Required = true,
-				HelpText = "The path to the file which defines which functions to hook.")]
+		[Option( 'h', "hooksfile",
+				HelpText = "The path to the file which defines which functions to hook." )]
 		public string HooksFilePath
 		{
 			get;
 			set;
-		}
+		} = "hooks";
 
-		[Option('l', "libfile", Required = true, DefaultValue = "HookRegistry.dll",
+		[Option( 'l', "libfile", DefaultValue = "HookRegistry.dll",
 				HelpText =
-					"The library that contains the functionality that gets executed when a hooked method triggers.")]
+					"The library that contains the functionality that gets executed when a hooked method triggers." )]
 		public string HooksRegistryFilePath
 		{
 			get;
 			set;
-		}
+		} = "HookRegistry.dll";
 
-		[Option("overwrite", Required = false, DefaultValue = true,
+		[ Option("overwrite", Required = false, DefaultValue = true,
 				HelpText = "Dependancies of libfile will be copied to the game library folder, overwriting existing files.")]
 		// Careful! Setting this to true might result in unexpected game behaviour, since game libraries itself are
 		// most likely to be a dependancy themselves!

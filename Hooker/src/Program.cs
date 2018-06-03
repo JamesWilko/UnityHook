@@ -25,11 +25,14 @@ namespace Hooker
 			Log = new Logger(options);
 
 			// Check the game path
-			string gamePath = Path.GetFullPath(options.GamePath);
-			options.GamePath = gamePath;
-			if (!Directory.Exists(gamePath))
+			if ( !string.IsNullOrEmpty( options.GamePath ) )
 			{
-				throw new DirectoryNotFoundException("Exe option `gamedir` is invalid!");
+				string gamePath = Path.GetFullPath( options.GamePath );
+				options.GamePath = gamePath;
+				if ( !Directory.Exists( gamePath ) )
+				{
+					throw new DirectoryNotFoundException( "Exe option `gamedir` is invalid!" );
+				}
 			}
 		}
 
@@ -44,11 +47,11 @@ namespace Hooker
 
 			var opts = new Options();
 			// Must check for null, because the parser won't..
-			if (args == null || args.Length == 0)
-			{
-				Console.WriteLine(opts.GetUsage("help"));
-				goto ERROR;
-			}
+// 			if (args == null || args.Length == 0)
+// 			{
+// 				Console.WriteLine(opts.GetUsage("help"));
+// 				goto ERROR;
+// 			}
 
 			CommandLine.Parser.Default.ParseArgumentsStrict(args, opts, (verb, subOptions) =>
 			{
@@ -76,7 +79,10 @@ namespace Hooker
 			// Use knowledge about the game HearthStone. Game knowledge is defined in the shared code
 			// project KnowledgeBase. See `GameKnowledgeBase.HSKB` for more information.
 			// Change the following line if you want to hook another game.
-			var gameKnowledge = new GameKB(generalOptions.GamePath, new HSKB());
+
+			var gameBase = new CultistSimKB();
+			string GamePath = string.IsNullOrEmpty( generalOptions.GamePath ) ? gameBase.LibraryRelativePath : generalOptions.GamePath;
+			var gameKnowledge = new GameKB( GamePath, gameBase );
 
 			try
 			{

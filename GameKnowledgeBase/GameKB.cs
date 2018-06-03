@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 namespace GameKnowledgeBase
@@ -41,7 +41,7 @@ namespace GameKnowledgeBase
 		{
 			if (!Directory.Exists(installPath))
 			{
-				throw new ArgumentException("LibraryPath parameter must point to a valid path!");
+				throw new ArgumentException("LibraryPath parameter must point to a valid path! " + installPath );
 			}
 
 			_installpath = Path.GetFullPath(installPath);

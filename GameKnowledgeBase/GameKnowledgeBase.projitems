@@ -9,6 +9,7 @@
     <Import_RootNamespace>GameKnowledgeBase</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CultistSimKB.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameKB.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HSKB.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IKnowledge.cs" />

@@ -17,11 +17,12 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,30 +32,27 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\hs_link\Hearthstone_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\hs_link\Hearthstone_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Google.Protobuf">
-      <HintPath>..\lib\PayloadFormat\Debug\net35\Google.Protobuf.dll</HintPath>
+      <HintPath>E:\steam\steamapps\common\Cultist Simulator\cultistsimulator_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Security" />
-    <Reference Include="PayloadFormat">
-      <HintPath>..\lib\PayloadFormat\Debug\net35\PayloadFormat.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="UnityEngine">
-      <HintPath>..\hs_link\Hearthstone_Data\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\Oxide\Oxide.Core-2.0.3467\Games\Unity\Oxide.Game.CultistSimulator\CultistSimulator\Dependencies\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\Oxide\Oxide.Core-2.0.3467\Games\Unity\Oxide.Game.CultistSimulator\CultistSimulator\Dependencies\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\steam\steamapps\common\Cultist Simulator\cultistsimulator_Data\Managed\UnityEngine.UIModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -62,15 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\HookRegistry.cs" />
-    <Compile Include="src\archived\IncomingPackets.cs" />
-    <Compile Include="src\archived\OutgoingPackets.cs" />
-    <Compile Include="src\hooks\SocketHook.cs" />
+    <Compile Include="src\hooks\SnapToGridHook.cs" />
     <Compile Include="src\hooks\HookTemplate.cs" />
-    <Compile Include="src\packetdumper\DumpServer.cs" />
-    <Compile Include="src\hooks\SSLDisable.cs" />
-    <Compile Include="src\packetdumper\PegasusPacketDecoder.cs" />
     <Compile Include="src\ReferenceLoader.cs" />
-    <Compile Include="src\hooks\SslStreamHook.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

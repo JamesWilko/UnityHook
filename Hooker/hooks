@@ -1,0 +1,4 @@
+// Cultist Simulator
+Assets.TabletopUi.Scripts.Infrastructure.Choreographer::GetFreePosWithDebug
+Assets.CS.TabletopUI.DraggableToken::DelayedEndDrag
+Assets.TabletopUi.Scripts.Infrastructure.HotkeyWatcher::WatchForGameplayHotkeys

@@ -1,5 +1,3 @@
-using Google.Protobuf.Reflection;
-using HackstoneAnalyzer.PayloadFormat;
 using System;
 using System.Collections.Generic;
 
@@ -34,12 +32,7 @@ namespace Hooks
 			// and produce strange runtime issues!
 
 			ReferenceTypes = new List<Type>()
-			{			
-				// Reference to PayloadFormat.dll
-				typeof(Handshake),
-
-				// Reference to Google.Protobuf.dll
-				typeof(MessageDescriptor),
+			{
 			};
 		}
 	}
